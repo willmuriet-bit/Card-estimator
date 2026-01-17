@@ -19,6 +19,8 @@
       align-items: flex-start;
       justify-content: center;
       padding-top: 30px;
+      color-scheme: light;
+    }
     }.card {
   background: #ffffff;
   width: 90%;
@@ -176,12 +178,10 @@ button:hover {
       const Rformatted = formatR(R);
 
       let A;
-      if (Rformatted === '00' || Rformatted === 0) {
-        A = 0;
-      } else if (Rformatted > 0 && Rformatted < 43) {
+      if (Rformatted !== '00' && Rformatted > 42 && Rformatted < 52) {
         A = 1;
-      } else if (Rformatted > 42 && Rformatted < 52) {
-        A = 3;
+      } else {
+        A = 0;
       }
 
       const X = Math.floor(Math.random() * 900 + 100);
