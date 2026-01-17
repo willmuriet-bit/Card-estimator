@@ -110,7 +110,6 @@ button:hover {
 <button id="calculateBtn">🎲 Calculate</button>
 
   </div>  <script>
-    // Stack deck personnel
     const stackDeck = [
       "3♥️","4♣️","J♠️","4♦️","9♥️","J♦️","7♠️","8♦️","A♦️","10♠️",
       "2♠️","9♠️","6♦️","Q♥️","7♥️","A♠️","Q♣️","6♣️","3♠️","10♥️",
@@ -121,6 +120,11 @@ button:hover {
 
     function getCardPosition(card) {
       return stackDeck.indexOf(card) + 1;
+    }
+
+    function formatR(value) {
+      if (value === '00') return '00';
+      return value < 10 ? '0' + value : value;
     }
 
     document.getElementById('calculateBtn').addEventListener('click', () => {
@@ -137,22 +141,23 @@ button:hover {
         R = '00';
       }
 
+      const Rformatted = formatR(R);
+
       // Calcul de stat
       let A;
-      if (R === '00' || R === 0) {
+      if (Rformatted === '00' || Rformatted === 0) {
         A = 0;
-      } else if (R > 0 && R < 43) {
+      } else if (Rformatted > 0 && Rformatted < 43) {
         A = 1;
-      } else if (R > 42 && R < 52) {
+      } else if (Rformatted > 42 && Rformatted < 52) {
         A = 3;
       }
 
-      const X = Math.floor(Math.random() * 900 + 100); // nombre aléatoire à 3 chiffres
-      const stat = `${A},${R}${X}%`;
+      const X = Math.floor(Math.random() * 900 + 100);
+      const stat = `${A},${Rformatted}${X}%`;
 
-      // Affichage de test
-      console.log(`Carte: ${selectedCard}, C=${C}, N=${N}, R=${R}, stat=${stat}`);
-      alert(`R=${R}, stat=${stat}`);
+      console.log(`Carte: ${selectedCard}, C=${C}, N=${N}, R=${Rformatted}, stat=${stat}`);
+      alert(`R=${Rformatted}, stat=${stat}`);
     });
   </script></body>
 </html>
