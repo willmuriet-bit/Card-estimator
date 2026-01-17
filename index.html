@@ -92,7 +92,12 @@ button:hover {
   font-size: 66px; /* triple size */
   margin-bottom: 15px;
   display: none;
-  animation: blink 4s infinite; /* clignote 2x plus lent que précédemment */
+  animation: blink 4s infinite;
+}
+
+.disabled {
+  pointer-events: none;
+  opacity: 0.6;
 }
 
   </style>
@@ -143,17 +148,25 @@ button:hover {
 
     const statDisplay = document.getElementById('statDisplay');
     const calculateBtn = document.getElementById('calculateBtn');
+    const cardSelect = document.getElementById('cardSelect');
+    const positionSelect = document.getElementById('positionSelect');
+
+    function setControlsDisabled(disabled) {
+      cardSelect.disabled = disabled;
+      positionSelect.disabled = disabled;
+    }
 
     calculateBtn.addEventListener('click', () => {
       if (calculateBtn.textContent.includes('Try again')) {
         statDisplay.style.display = 'none';
         calculateBtn.textContent = '🎲 Calculate';
+        setControlsDisabled(false);
         return;
       }
 
-      const selectedCard = document.getElementById('cardSelect').value;
+      const selectedCard = cardSelect.value;
       const C = getCardPosition(selectedCard);
-      const N = parseInt(document.getElementById('positionSelect').value);
+      const N = parseInt(positionSelect.value);
       let R;
 
       if (C > N) {
@@ -181,6 +194,7 @@ button:hover {
       statDisplay.textContent = stat;
       statDisplay.style.display = 'block';
       calculateBtn.textContent = 'Try again';
+      setControlsDisabled(true);
 
       console.log(`Carte: ${selectedCard}, C=${C}, N=${N}, R=${Rformatted}, stat=${stat}`);
     });
