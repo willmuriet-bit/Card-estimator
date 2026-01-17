@@ -92,7 +92,7 @@ button:hover {
   font-size: 66px; /* triple size */
   margin-bottom: 15px;
   display: none;
-  animation: blink 4s infinite;
+  animation: blink 8s infinite;
 }
 
 .disabledButton {
@@ -151,8 +151,7 @@ button:hover {
       return value < 10 ? '0' + value : value;
     }
 
-    function setControlsDisabled(disabled) {
-      // Désactive uniquement le bouton, pas les selects
+    function setButtonDisabled(disabled) {
       calculateBtn.disabled = disabled;
       if (disabled) {
         calculateBtn.classList.add('disabledButton');
@@ -165,7 +164,7 @@ button:hover {
       if (calculateBtn.textContent.includes('Try again')) {
         statDisplay.style.display = 'none';
         calculateBtn.textContent = '🎲 Calculate';
-        setControlsDisabled(false);
+        setButtonDisabled(false);
         return;
       }
 
@@ -199,7 +198,7 @@ button:hover {
       statDisplay.textContent = stat;
       statDisplay.style.display = 'block';
       calculateBtn.textContent = 'Try again';
-      setControlsDisabled(true);
+      setButtonDisabled(true);
 
       console.log(`Carte: ${selectedCard}, C=${C}, N=${N}, R=${Rformatted}, stat=${stat}`);
     });
