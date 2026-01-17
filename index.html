@@ -81,12 +81,18 @@ button:hover {
   background: #28b862;
 }
 
+@keyframes blink {
+  0%, 50%, 100% { opacity: 1; }
+  25%, 75% { opacity: 0; }
+}
+
 #statDisplay {
   font-weight: bold;
   color: red;
-  font-size: 22px;
+  font-size: 66px; /* triple size */
   margin-bottom: 15px;
   display: none;
+  animation: blink 1s infinite;
 }
 
   </style>
