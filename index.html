@@ -95,7 +95,7 @@ button:hover {
   animation: blink 4s infinite;
 }
 
-.disabled {
+.disabledButton {
   pointer-events: none;
   opacity: 0.6;
 }
@@ -137,6 +137,11 @@ button:hover {
       "K♥️","5♠️","8♣️","2♦️","5♦️","5♥️","K♠️","8♠️","2♥️","K♣️","K♦️","5♣️"
     ];
 
+    const statDisplay = document.getElementById('statDisplay');
+    const calculateBtn = document.getElementById('calculateBtn');
+    const cardSelect = document.getElementById('cardSelect');
+    const positionSelect = document.getElementById('positionSelect');
+
     function getCardPosition(card) {
       return stackDeck.indexOf(card) + 1;
     }
@@ -146,14 +151,14 @@ button:hover {
       return value < 10 ? '0' + value : value;
     }
 
-    const statDisplay = document.getElementById('statDisplay');
-    const calculateBtn = document.getElementById('calculateBtn');
-    const cardSelect = document.getElementById('cardSelect');
-    const positionSelect = document.getElementById('positionSelect');
-
     function setControlsDisabled(disabled) {
-      cardSelect.disabled = disabled;
-      positionSelect.disabled = disabled;
+      // Désactive uniquement le bouton, pas les selects
+      calculateBtn.disabled = disabled;
+      if (disabled) {
+        calculateBtn.classList.add('disabledButton');
+      } else {
+        calculateBtn.classList.remove('disabledButton');
+      }
     }
 
     calculateBtn.addEventListener('click', () => {
