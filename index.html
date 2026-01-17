@@ -27,6 +27,7 @@
   border-radius: 18px;
   box-shadow: 0 15px 35px rgba(0,0,0,0.1);
   text-align: center;
+  position: relative;
 }
 
 h1 {
@@ -73,10 +74,19 @@ button {
   align-items: center;
   justify-content: center;
   gap: 10px;
+  margin-top: 10px;
 }
 
 button:hover {
   background: #28b862;
+}
+
+#statDisplay {
+  font-weight: bold;
+  color: red;
+  font-size: 22px;
+  margin-bottom: 15px;
+  display: none;
 }
 
   </style>
@@ -106,7 +116,7 @@ button:hover {
   <option>51</option><option>52</option>
 </select>
 
-<!-- Bouton calcul -->
+<div id="statDisplay"></div>
 <button id="calculateBtn">🎲 Calculate</button>
 
   </div>  <script>
@@ -127,7 +137,16 @@ button:hover {
       return value < 10 ? '0' + value : value;
     }
 
-    document.getElementById('calculateBtn').addEventListener('click', () => {
+    const statDisplay = document.getElementById('statDisplay');
+    const calculateBtn = document.getElementById('calculateBtn');
+
+    calculateBtn.addEventListener('click', () => {
+      if (calculateBtn.textContent.includes('Try again')) {
+        statDisplay.style.display = 'none';
+        calculateBtn.textContent = '🎲 Calculate';
+        return;
+      }
+
       const selectedCard = document.getElementById('cardSelect').value;
       const C = getCardPosition(selectedCard);
       const N = parseInt(document.getElementById('positionSelect').value);
@@ -143,7 +162,6 @@ button:hover {
 
       const Rformatted = formatR(R);
 
-      // Calcul de stat
       let A;
       if (Rformatted === '00' || Rformatted === 0) {
         A = 0;
@@ -156,8 +174,11 @@ button:hover {
       const X = Math.floor(Math.random() * 900 + 100);
       const stat = `${A},${Rformatted}${X}%`;
 
+      statDisplay.textContent = stat;
+      statDisplay.style.display = 'block';
+      calculateBtn.textContent = 'Try again';
+
       console.log(`Carte: ${selectedCard}, C=${C}, N=${N}, R=${Rformatted}, stat=${stat}`);
-      alert(`R=${Rformatted}, stat=${stat}`);
     });
   </script></body>
 </html>
