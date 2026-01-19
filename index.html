@@ -10,13 +10,13 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
-  background: repeating-linear-gradient(
-    45deg,
-    #f5f5f5,
-    #f5f5f5 20px,
-    #fafafa 20px,
-    #fafafa 40px
-  );
+
+  background-image: url("background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+
   display: flex;
   justify-content: center;
   padding-top: 30px;
@@ -28,7 +28,7 @@ body {
   max-width: 420px;
   padding: 30px 25px 35px;
   border-radius: 18px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
   text-align: center;
 }
 
@@ -47,6 +47,7 @@ p {
   font-size: 16px;
   color: #333;
   margin-bottom: 25px;
+  line-height: 1.5;
 }
 
 select {
@@ -95,13 +96,17 @@ button:hover {
 </head>
 
 <body>
+
 <div class="card">
-  <img src="logo.png" class="logo">
+  <img src="logo.png" alt="Logo" class="logo">
 
   <h1>Card Estimator</h1>
-  <p>A study on commonly named card and number combinations</p>
+  <p>
+    A study on commonly named card and number combinations and the probability
+    of it being at their position
+  </p>
 
-  <!-- Cartes -->
+  <!-- Sélecteur de cartes -->
   <select id="cardSelect">
     <option>A♠️</option><option>2♠️</option><option>3♠️</option><option>4♠️</option><option>5♠️</option><option>6♠️</option><option>7♠️</option><option>8♠️</option><option>9♠️</option><option>10♠️</option><option>J♠️</option><option>Q♠️</option><option>K♠️</option>
     <option>A♥️</option><option>2♥️</option><option>3♥️</option><option>4♥️</option><option>5♥️</option><option>6♥️</option><option>7♥️</option><option>8♥️</option><option>9♥️</option><option>10♥️</option><option>J♥️</option><option>Q♥️</option><option>K♥️</option>
@@ -109,9 +114,8 @@ button:hover {
     <option>A♦️</option><option>2♦️</option><option>3♦️</option><option>4♦️</option><option>5♦️</option><option>6♦️</option><option>7♦️</option><option>8♦️</option><option>9♦️</option><option>10♦️</option><option>J♦️</option><option>Q♦️</option><option>K♦️</option>
   </select>
 
-  <!-- Positions -->
+  <!-- Sélecteur de positions -->
   <select id="positionSelect">
-    <!-- 1 à 52 -->
     <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
     <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
     <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
@@ -126,6 +130,7 @@ button:hover {
   </select>
 
   <div id="statDisplay"></div>
+
   <button id="calculateBtn">🎲 Calculate</button>
 </div>
 
@@ -160,8 +165,8 @@ btn.onclick = () => {
   else if (C < N) R = 52 - (N - C);
   else R = "00";
 
-  R = R === "00" ? "00" : R.toString().padStart(2,"0");
-  const X = Math.floor(Math.random()*100).toString().padStart(2,"0");
+  R = R === "00" ? "00" : R.toString().padStart(2, "0");
+  const X = Math.floor(Math.random() * 100).toString().padStart(2, "0");
 
   statDisplay.textContent = `0,0${R}${X}%`;
   statDisplay.style.display = "block";
@@ -171,6 +176,6 @@ btn.onclick = () => {
   positionSelect.disabled = true;
 };
 </script>
+
 </body>
 </html>
-
