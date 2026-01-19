@@ -101,7 +101,6 @@
 </head>
 
 <body>
-
   <div class="card">
     <img src="logo.png" alt="Logo" class="logo">
 
@@ -112,6 +111,7 @@
       of it being at their position
     </p>
 
+    <!-- Card selector -->
     <select id="cardSelect">
       <option>A♠️</option><option>2♠️</option><option>3♠️</option><option>4♠️</option><option>5♠️</option><option>6♠️</option><option>7♠️</option><option>8♠️</option><option>9♠️</option><option>10♠️</option><option>J♠️</option><option>Q♠️</option><option>K♠️</option>
       <option>A♥️</option><option>2♥️</option><option>3♥️</option><option>4♥️</option><option>5♥️</option><option>6♥️</option><option>7♥️</option><option>8♥️</option><option>9♥️</option><option>10♥️</option><option>J♥️</option><option>Q♥️</option><option>K♥️</option>
@@ -119,13 +119,9 @@
       <option>A♦️</option><option>2♦️</option><option>3♦️</option><option>4♦️</option><option>5♦️</option><option>6♦️</option><option>7♦️</option><option>8♦️</option><option>9♦️</option><option>10♦️</option><option>J♦️</option><option>Q♦️</option><option>K♦️</option>
     </select>
 
+    <!-- Position selector -->
     <select id="positionSelect">
-      <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
-      <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
-      <option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option>
-      <option>31</option><option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option><option>38</option><option>39</option><option>40</option>
-      <option>41</option><option>42</option><option>43</option><option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option><option>50</option>
-      <option>51</option><option>52</option>
+      ${Array.from({length:52},(_,i)=>`<option>${i+1}</option>`).join('')}
     </select>
 
     <div id="statDisplay"></div>
@@ -142,10 +138,10 @@
       "K♥️","5♠️","8♣️","2♦️","5♦️","5♥️","K♠️","8♠️","2♥️","K♣️","K♦️","5♣️"
     ];
 
-    const statDisplay = document.getElementById('statDisplay');
-    const calculateBtn = document.getElementById('calculateBtn');
     const cardSelect = document.getElementById('cardSelect');
     const positionSelect = document.getElementById('positionSelect');
+    const calculateBtn = document.getElementById('calculateBtn');
+    const statDisplay = document.getElementById('statDisplay');
 
     function getCardPosition(card) {
       return stackDeck.indexOf(card) + 1;
@@ -153,12 +149,11 @@
 
     function formatR(value) {
       if (value === '00') return '00';
-      return value < 10 ? '0' + value : value;
+      return value < 10 ? '0' + value : value.toString();
     }
 
     calculateBtn.addEventListener('click', () => {
-
-      if (calculateBtn.textContent.includes('Try again')) {
+      if (calculateBtn.textContent === 'Try again') {
         statDisplay.style.display = 'none';
         calculateBtn.textContent = '🎲 Calculate';
         cardSelect.disabled = false;
@@ -166,8 +161,7 @@
         return;
       }
 
-      const selectedCard = cardSelect.value;
-      const C = getCardPosition(selectedCard);
+      const C = getCardPosition(cardSelect.value);
       const N = parseInt(positionSelect.value);
       let R;
 
@@ -180,17 +174,9 @@
       }
 
       const Rformatted = formatR(R);
+      const X = Math.floor(Math.random() * 100).toString().padStart(2, '0');
 
-      // 🔹 NOUVELLE RÈGLE POUR A
-      let A;
-      if (Rformatted !== '00' && Rformatted > 42 && Rformatted < 51) {
-        A = 1;
-      } else {
-        A = 0;
-      }
-
-      const X = Math.floor(Math.random() * 900 + 100);
-      const stat = `${A},${Rformatted}${X}%`;
+      const stat = `0,0${Rformatted}${X}%`;
 
       statDisplay.textContent = stat;
       statDisplay.style.display = 'block';
@@ -199,9 +185,8 @@
       cardSelect.disabled = true;
       positionSelect.disabled = true;
 
-      console.log(`Carte: ${selectedCard}, C=${C}, N=${N}, R=${Rformatted}, stat=${stat}`);
+      console.log(`C=${C}, N=${N}, R=${Rformatted}, stat=${stat}`);
     });
   </script>
-
 </body>
 </html>
