@@ -6,17 +6,23 @@
 <title>Card Estimator</title>
 
 <style>
-body {
+/* ✅ PAGE TOTALEMENT BLANCHE */
+html, body {
   margin: 0;
-  min-height: 100vh;
+  padding: 0;
+  min-height: 100%;
   font-family: Arial, Helvetica, sans-serif;
-  background: url("background.jpg") no-repeat center center;
-  background-size: cover;
-  display: flex;
-  justify-content: center;
-  padding-top: 40px;
+  background: #ffffff;
 }
 
+/* ✅ CENTRAGE SANS ESPACE VIDE */
+body {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+/* CARTE PRINCIPALE */
 .card {
   background: #ffffff;
   width: 90%;
@@ -27,13 +33,13 @@ body {
   text-align: center;
 }
 
-/* LOGO RESPONSIVE + ABAISSÉ */
+/* LOGO RESPONSIVE ET ABAISSÉ */
 .logo {
   display: block;
   width: 100%;
   max-width: 420px;
   height: auto;
-  margin: 40px auto 12px auto;
+  margin: 30px auto 12px auto;
 }
 
 h1 {
@@ -106,7 +112,7 @@ button:hover {
     of it being at their position
   </p>
 
-  <!-- Cartes -->
+  <!-- Sélection carte -->
   <select id="cardSelect">
     <option>A♠️</option><option>2♠️</option><option>3♠️</option><option>4♠️</option><option>5♠️</option><option>6♠️</option><option>7♠️</option><option>8♠️</option><option>9♠️</option><option>10♠️</option><option>J♠️</option><option>Q♠️</option><option>K♠️</option>
     <option>A♥️</option><option>2♥️</option><option>3♥️</option><option>4♥️</option><option>5♥️</option><option>6♥️</option><option>7♥️</option><option>8♥️</option><option>9♥️</option><option>10♥️</option><option>J♥️</option><option>Q♥️</option><option>K♥️</option>
@@ -114,7 +120,7 @@ button:hover {
     <option>A♦️</option><option>2♦️</option><option>3♦️</option><option>4♦️</option><option>5♦️</option><option>6♦️</option><option>7♦️</option><option>8♦️</option><option>9♦️</option><option>10♦️</option><option>J♦️</option><option>Q♦️</option><option>K♦️</option>
   </select>
 
-  <!-- Positions -->
+  <!-- Sélection position -->
   <select id="positionSelect">
     <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
     <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
