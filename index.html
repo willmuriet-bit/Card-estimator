@@ -1,51 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-
-<!-- ✅ META MOBILE FULL SCREEN -->
-<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<meta name="mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="default">
-
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Card Estimator</title>
 
 <style>
+/* RESET TOTAL pour éviter bandes sombres */
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
+  width: 100%;
+  min-height: 100%;
+  background: white;
   font-family: Arial, Helvetica, sans-serif;
-  background: #ffffff;
 }
 
+/* BACKGROUND IMAGE */
 body {
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  background-image: url("background.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
 
+/* CARD */
 .card {
-  background: #ffffff;
-  width: 90%;
+  background: white;
+  width: 92%;
   max-width: 420px;
-  padding: 30px 25px 35px;
+  margin-top: 20px;
+  padding: 30px 24px 36px;
   border-radius: 18px;
   box-shadow: 0 15px 35px rgba(0,0,0,0.15);
   text-align: center;
 }
 
+/* LOGO */
 .logo {
-  width: 100%;
-  max-width: 420px;
-  height: auto;
-  margin: 30px auto 12px auto;
+  width: 80%;
+  max-width: 320px;
+  margin: 20px auto 10px;
+  display: block;
 }
 
+/* TITLES */
 h1 {
   font-size: 32px;
-  margin-bottom: 15px;
+  margin: 10px 0 15px;
 }
 
 p {
@@ -55,6 +60,7 @@ p {
   line-height: 1.5;
 }
 
+/* SELECTS */
 select {
   width: 100%;
   padding: 14px;
@@ -66,6 +72,7 @@ select {
   text-align: center;
 }
 
+/* BUTTON */
 button {
   width: 100%;
   padding: 16px;
@@ -74,8 +81,8 @@ button {
   border-radius: 14px;
   background: #2ecc71;
   color: white;
-  cursor: pointer;
   font-weight: bold;
+  cursor: pointer;
   margin-top: 10px;
 }
 
@@ -83,27 +90,19 @@ button:hover {
   background: #28b862;
 }
 
+/* STAT DISPLAY */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 #statDisplay {
+  display: none;
+  font-size: 66px;
   font-weight: bold;
   color: red;
-  font-size: 66px;
-  margin-bottom: 15px;
-  display: none;
-  animation: blink 8s infinite;
-}
-
-@keyframes blink {
-  0%, 50%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0; }
-}
-
-/* 🔽 Bouton plein écran discret */
-.fullscreen-btn {
-  background: #3498db;
-  margin-top: 15px;
-}
-.fullscreen-btn:hover {
-  background: #2c80b4;
+  margin-bottom: 18px;
+  animation: blink 10s infinite;
 }
 </style>
 </head>
@@ -111,8 +110,7 @@ button:hover {
 <body>
 
 <div class="card">
-
-  <img src="logo.png" class="logo" alt="Logo">
+  <img src="logo.png" alt="Logo" class="logo">
 
   <h1>Card Estimator</h1>
 
@@ -121,32 +119,27 @@ button:hover {
     of it being at their position
   </p>
 
+  <!-- CARD SELECT -->
   <select id="cardSelect">
-    <option>A♠️</option><option>2♠️</option><option>3♠️</option><option>4♠️</option><option>5♠️</option>
-    <option>6♠️</option><option>7♠️</option><option>8♠️</option><option>9♠️</option><option>10♠️</option>
-    <option>J♠️</option><option>Q♠️</option><option>K♠️</option>
-    <option>A♥️</option><option>2♥️</option><option>3♥️</option><option>4♥️</option><option>5♥️</option>
-    <option>6♥️</option><option>7♥️</option><option>8♥️</option><option>9♥️</option><option>10♥️</option>
-    <option>J♥️</option><option>Q♥️</option><option>K♥️</option>
-    <option>A♣️</option><option>2♣️</option><option>3♣️</option><option>4♣️</option><option>5♣️</option>
-    <option>6♣️</option><option>7♣️</option><option>8♣️</option><option>9♣️</option><option>10♣️</option>
-    <option>J♣️</option><option>Q♣️</option><option>K♣️</option>
-    <option>A♦️</option><option>2♦️</option><option>3♦️</option><option>4♦️</option><option>5♦️</option>
-    <option>6♦️</option><option>7♦️</option><option>8♦️</option><option>9♦️</option><option>10♦️</option>
-    <option>J♦️</option><option>Q♦️</option><option>K♦️</option>
+    <option>A♠️</option><option>2♠️</option><option>3♠️</option><option>4♠️</option><option>5♠️</option><option>6♠️</option><option>7♠️</option><option>8♠️</option><option>9♠️</option><option>10♠️</option><option>J♠️</option><option>Q♠️</option><option>K♠️</option>
+    <option>A♥️</option><option>2♥️</option><option>3♥️</option><option>4♥️</option><option>5♥️</option><option>6♥️</option><option>7♥️</option><option>8♥️</option><option>9♥️</option><option>10♥️</option><option>J♥️</option><option>Q♥️</option><option>K♥️</option>
+    <option>A♣️</option><option>2♣️</option><option>3♣️</option><option>4♣️</option><option>5♣️</option><option>6♣️</option><option>7♣️</option><option>8♣️</option><option>9♣️</option><option>10♣️</option><option>J♣️</option><option>Q♣️</option><option>K♣️</option>
+    <option>A♦️</option><option>2♦️</option><option>3♦️</option><option>4♦️</option><option>5♦️</option><option>6♦️</option><option>7♦️</option><option>8♦️</option><option>9♦️</option><option>10♦️</option><option>J♦️</option><option>Q♦️</option><option>K♦️</option>
   </select>
 
+  <!-- POSITION SELECT -->
   <select id="positionSelect">
-    ${Array.from({length:52},(_,i)=>`<option>${i+1}</option>`).join("")}
+    <!-- 1 à 52 -->
+    <script>
+      for (let i = 1; i <= 52; i++) {
+        document.write(`<option>${i}</option>`);
+      }
+    </script>
   </select>
 
   <div id="statDisplay"></div>
 
   <button id="calculateBtn">🎲 Calculate</button>
-
-  <!-- 🔽 Bouton plein écran -->
-  <button class="fullscreen-btn" onclick="goFullScreen()">📱 Full Screen</button>
-
 </div>
 
 <script>
@@ -158,11 +151,50 @@ const stackDeck = [
   "K♥️","5♠️","8♣️","2♦️","5♦️","5♥️","K♠️","8♠️","2♥️","K♣️","K♦️","5♣️"
 ];
 
-function goFullScreen() {
-  const el = document.documentElement;
-  if (el.requestFullscreen) el.requestFullscreen();
-  else if (el.webkitRequestFullscreen) el.webkitRequestFullscreen();
+const cardSelect = document.getElementById("cardSelect");
+const positionSelect = document.getElementById("positionSelect");
+const calculateBtn = document.getElementById("calculateBtn");
+const statDisplay = document.getElementById("statDisplay");
+
+function getCardPosition(card) {
+  return stackDeck.indexOf(card) + 1;
 }
+
+function formatR(val) {
+  if (val === "00") return "00";
+  return val < 10 ? "0" + val : val;
+}
+
+calculateBtn.addEventListener("click", () => {
+
+  if (calculateBtn.textContent === "Try again") {
+    statDisplay.style.display = "none";
+    calculateBtn.textContent = "🎲 Calculate";
+    cardSelect.disabled = false;
+    positionSelect.disabled = false;
+    return;
+  }
+
+  const C = getCardPosition(cardSelect.value);
+  const N = parseInt(positionSelect.value);
+  let R;
+
+  if (C > N) R = C - N;
+  else if (C < N) R = 52 - (N - C);
+  else R = "00";
+
+  const Rformatted = formatR(R);
+  const X = Math.floor(Math.random() * 90 + 10); // 2 chiffres
+
+  const stat = `0,0${Rformatted}${X}%`;
+
+  statDisplay.textContent = stat;
+  statDisplay.style.display = "block";
+
+  calculateBtn.textContent = "Try again";
+  cardSelect.disabled = true;
+  positionSelect.disabled = true;
+});
 </script>
 
 </body>
