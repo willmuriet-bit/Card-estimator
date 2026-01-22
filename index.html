@@ -1,201 +1,346 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta charset="UTF-8" />
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
 <title>Card Estimator</title>
 
+
 <style>
-/* RESET TOTAL pour éviter bandes sombres */
+
+/* ✅ PAGE TOTALEMENT BLANCHE */
+
 html, body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100%;
-  background: white;
-  font-family: Arial, Helvetica, sans-serif;
+
+  margin: 0;
+
+  padding: 0;
+
+  min-height: 100%;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  background: #ffffff;
+
 }
 
-/* BACKGROUND IMAGE */
+
+/* ✅ CENTRAGE SANS ESPACE VIDE */
+
 body {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-  background-image: url("background.jpg");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: flex-start;
+
 }
 
-/* CARD */
+
+/* CARTE PRINCIPALE */
+
 .card {
-  background: white;
-  width: 92%;
-  max-width: 420px;
-  margin-top: 20px;
-  padding: 30px 24px 36px;
-  border-radius: 18px;
-  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-  text-align: center;
+
+  background: #ffffff;
+
+  width: 90%;
+
+  max-width: 420px;
+
+  padding: 30px 25px 35px;
+
+  border-radius: 18px;
+
+  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+
+  text-align: center;
+
 }
 
-/* LOGO */
+
+/* LOGO RESPONSIVE ET ABAISSÉ */
+
 .logo {
-  width: 80%;
-  max-width: 320px;
-  margin: 20px auto 10px;
-  display: block;
+
+  display: block;
+
+  width: 100%;
+
+  max-width: 420px;
+
+  height: auto;
+
+  margin: 30px auto 12px auto;
+
 }
 
-/* TITLES */
+
 h1 {
-  font-size: 32px;
-  margin: 10px 0 15px;
+
+  font-size: 32px;
+
+  margin-bottom: 15px;
+
 }
+
 
 p {
-  font-size: 16px;
-  color: #333;
-  margin-bottom: 25px;
-  line-height: 1.5;
+
+  font-size: 16px;
+
+  color: #333;
+
+  margin-bottom: 25px;
+
+  line-height: 1.5;
+
 }
 
-/* SELECTS */
+
 select {
-  width: 100%;
-  padding: 14px;
-  font-size: 18px;
-  border-radius: 12px;
-  border: 1px solid #ddd;
-  margin-bottom: 18px;
-  background: #f2f2f2;
-  text-align: center;
+
+  width: 100%;
+
+  padding: 14px;
+
+  font-size: 18px;
+
+  border-radius: 12px;
+
+  border: 1px solid #ddd;
+
+  margin-bottom: 18px;
+
+  background: #f2f2f2;
+
+  text-align: center;
+
+  text-align-last: center;
+
 }
 
-/* BUTTON */
+
 button {
-  width: 100%;
-  padding: 16px;
-  font-size: 20px;
-  border: none;
-  border-radius: 14px;
-  background: #2ecc71;
-  color: white;
-  font-weight: bold;
-  cursor: pointer;
-  margin-top: 10px;
+
+  width: 100%;
+
+  padding: 16px;
+
+  font-size: 20px;
+
+  border: none;
+
+  border-radius: 14px;
+
+  background: #2ecc71;
+
+  color: white;
+
+  cursor: pointer;
+
+  font-weight: bold;
+
+  margin-top: 10px;
+
 }
+
 
 button:hover {
-  background: #28b862;
+
+  background: #28b862;
+
 }
 
-/* STAT DISPLAY */
+
 @keyframes blink {
-  0%, 100% { opacity: 1; }
-  50% { opacity: 0; }
+
+  0%, 50%, 100% { opacity: 1; }
+
+  25%, 75% { opacity: 0; }
+
 }
+
 
 #statDisplay {
-  display: none;
-  font-size: 66px;
-  font-weight: bold;
-  color: red;
-  margin-bottom: 18px;
-  animation: blink 10s infinite;
+
+  font-weight: bold;
+
+  color: red;
+
+  font-size: 66px;
+
+  margin-bottom: 15px;
+
+  display: none;
+
+  animation: blink 8s infinite;
+
 }
+
 </style>
+
 </head>
+
 
 <body>
 
+
 <div class="card">
-  <img src="logo.png" alt="Logo" class="logo">
 
-  <h1>Card Estimator</h1>
 
-  <p>
-    A study on commonly named card and number combinations and the probability
-    of it being at their position
-  </p>
+  <img src="logo.png" alt="Logo" class="logo">
 
-  <!-- CARD SELECT -->
-  <select id="cardSelect">
-    <option>A♠️</option><option>2♠️</option><option>3♠️</option><option>4♠️</option><option>5♠️</option><option>6♠️</option><option>7♠️</option><option>8♠️</option><option>9♠️</option><option>10♠️</option><option>J♠️</option><option>Q♠️</option><option>K♠️</option>
-    <option>A♥️</option><option>2♥️</option><option>3♥️</option><option>4♥️</option><option>5♥️</option><option>6♥️</option><option>7♥️</option><option>8♥️</option><option>9♥️</option><option>10♥️</option><option>J♥️</option><option>Q♥️</option><option>K♥️</option>
-    <option>A♣️</option><option>2♣️</option><option>3♣️</option><option>4♣️</option><option>5♣️</option><option>6♣️</option><option>7♣️</option><option>8♣️</option><option>9♣️</option><option>10♣️</option><option>J♣️</option><option>Q♣️</option><option>K♣️</option>
-    <option>A♦️</option><option>2♦️</option><option>3♦️</option><option>4♦️</option><option>5♦️</option><option>6♦️</option><option>7♦️</option><option>8♦️</option><option>9♦️</option><option>10♦️</option><option>J♦️</option><option>Q♦️</option><option>K♦️</option>
-  </select>
 
-  <!-- POSITION SELECT -->
-  <select id="positionSelect">
-    <!-- 1 à 52 -->
-    <script>
-      for (let i = 1; i <= 52; i++) {
-        document.write(`<option>${i}</option>`);
-      }
-    </script>
-  </select>
+  <h1>Card Estimator</h1>
 
-  <div id="statDisplay"></div>
 
-  <button id="calculateBtn">🎲 Calculate</button>
+  <p>
+
+    A study on commonly named card and number combinations and the probability
+
+    of it being at their position
+
+  </p>
+
+
+  <!-- Sélection carte -->
+
+  <select id="cardSelect">
+
+    <option>A♠️</option><option>2♠️</option><option>3♠️</option><option>4♠️</option><option>5♠️</option><option>6♠️</option><option>7♠️</option><option>8♠️</option><option>9♠️</option><option>10♠️</option><option>J♠️</option><option>Q♠️</option><option>K♠️</option>
+
+    <option>A♥️</option><option>2♥️</option><option>3♥️</option><option>4♥️</option><option>5♥️</option><option>6♥️</option><option>7♥️</option><option>8♥️</option><option>9♥️</option><option>10♥️</option><option>J♥️</option><option>Q♥️</option><option>K♥️</option>
+
+    <option>A♣️</option><option>2♣️</option><option>3♣️</option><option>4♣️</option><option>5♣️</option><option>6♣️</option><option>7♣️</option><option>8♣️</option><option>9♣️</option><option>10♣️</option><option>J♣️</option><option>Q♣️</option><option>K♣️</option>
+
+    <option>A♦️</option><option>2♦️</option><option>3♦️</option><option>4♦️</option><option>5♦️</option><option>6♦️</option><option>7♦️</option><option>8♦️</option><option>9♦️</option><option>10♦️</option><option>J♦️</option><option>Q♦️</option><option>K♦️</option>
+
+  </select>
+
+
+  <!-- Sélection position -->
+
+  <select id="positionSelect">
+
+    <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
+
+    <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
+
+    <option>11</option><option>12</option><option>13</option><option>14</option><option>15</option>
+
+    <option>16</option><option>17</option><option>18</option><option>19</option><option>20</option>
+
+    <option>21</option><option>22</option><option>23</option><option>24</option><option>25</option>
+
+    <option>26</option><option>27</option><option>28</option><option>29</option><option>30</option>
+
+    <option>31</option><option>32</option><option>33</option><option>34</option><option>35</option>
+
+    <option>36</option><option>37</option><option>38</option><option>39</option><option>40</option>
+
+    <option>41</option><option>42</option><option>43</option><option>44</option><option>45</option>
+
+    <option>46</option><option>47</option><option>48</option><option>49</option><option>50</option>
+
+    <option>51</option><option>52</option>
+
+  </select>
+
+
+  <div id="statDisplay"></div>
+
+  <button id="calculateBtn">🎲 Calculate</button>
+
+
 </div>
 
+
 <script>
+
 const stackDeck = [
-  "3♥️","4♣️","J♠️","4♦️","9♥️","J♦️","7♠️","8♦️","A♦️","10♠️",
-  "2♠️","9♠️","6♦️","Q♥️","7♥️","A♠️","Q♣️","6♣️","3♠️","10♥️",
-  "3♦️","4♠️","J♣️","4♥️","9♦️","J♥️","7♣️","8♥️","A♥️","10♣️",
-  "2♣️","9♣️","6♥️","Q♦️","7♦️","A♣️","Q♠️","6♠️","3♣️","10♦️",
-  "K♥️","5♠️","8♣️","2♦️","5♦️","5♥️","K♠️","8♠️","2♥️","K♣️","K♦️","5♣️"
+
+  "3♥️","4♣️","J♠️","4♦️","9♥️","J♦️","7♠️","8♦️","A♦️","10♠️",
+
+  "2♠️","9♠️","6♦️","Q♥️","7♥️","A♠️","Q♣️","6♣️","3♠️","10♥️",
+
+  "3♦️","4♠️","J♣️","4♥️","9♦️","J♥️","7♣️","8♥️","A♥️","10♣️",
+
+  "2♣️","9♣️","6♥️","Q♦️","7♦️","A♣️","Q♠️","6♠️","3♣️","10♦️",
+
+  "K♥️","5♠️","8♣️","2♦️","5♦️","5♥️","K♠️","8♠️","2♥️","K♣️","K♦️","5♣️"
+
 ];
 
+
 const cardSelect = document.getElementById("cardSelect");
+
 const positionSelect = document.getElementById("positionSelect");
-const calculateBtn = document.getElementById("calculateBtn");
+
+const btn = document.getElementById("calculateBtn");
+
 const statDisplay = document.getElementById("statDisplay");
 
-function getCardPosition(card) {
-  return stackDeck.indexOf(card) + 1;
-}
 
-function formatR(val) {
-  if (val === "00") return "00";
-  return val < 10 ? "0" + val : val;
-}
+btn.onclick = () => {
 
-calculateBtn.addEventListener("click", () => {
+  if (btn.textContent === "Try again") {
 
-  if (calculateBtn.textContent === "Try again") {
-    statDisplay.style.display = "none";
-    calculateBtn.textContent = "🎲 Calculate";
-    cardSelect.disabled = false;
-    positionSelect.disabled = false;
-    return;
-  }
+    statDisplay.style.display = "none";
 
-  const C = getCardPosition(cardSelect.value);
-  const N = parseInt(positionSelect.value);
-  let R;
+    btn.textContent = "🎲 Calculate";
 
-  if (C > N) R = C - N;
-  else if (C < N) R = 52 - (N - C);
-  else R = "00";
+    cardSelect.disabled = false;
 
-  const Rformatted = formatR(R);
-  const X = Math.floor(Math.random() * 90 + 10); // 2 chiffres
+    positionSelect.disabled = false;
 
-  const stat = `0,0${Rformatted}${X}%`;
+    return;
 
-  statDisplay.textContent = stat;
-  statDisplay.style.display = "block";
+  }
 
-  calculateBtn.textContent = "Try again";
-  cardSelect.disabled = true;
-  positionSelect.disabled = true;
-});
+
+  const C = stackDeck.indexOf(cardSelect.value) + 1;
+
+  const N = parseInt(positionSelect.value);
+
+  let R;
+
+
+  if (C > N) R = C - N;
+
+  else if (C < N) R = 52 - (N - C);
+
+  else R = "00";
+
+
+  R = R === "00" ? "00" : R.toString().padStart(2, "0");
+
+  const X = Math.floor(Math.random() * 100).toString().padStart(2, "0");
+
+
+  statDisplay.textContent = `0,0${R}${X}%`;
+
+  statDisplay.style.display = "block";
+
+
+  btn.textContent = "Try again";
+
+  cardSelect.disabled = true;
+
+  positionSelect.disabled = true;
+
+};
+
 </script>
 
+
 </body>
+
 </html>
+
+
