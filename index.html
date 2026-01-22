@@ -10,10 +10,8 @@ body {
   margin: 0;
   min-height: 100vh;
   font-family: Arial, Helvetica, sans-serif;
-
   background: url("background.jpg") no-repeat center center;
   background-size: cover;
-
   display: flex;
   justify-content: center;
   padding-top: 30px;
@@ -29,10 +27,12 @@ body {
   text-align: center;
 }
 
+/* 🔽 LOGO AGRANDI ET ABAISSÉ */
 .logo {
-  width: 360px;
-  max-width: 90%;
-  margin-bottom: 30px;
+  width: 400px;
+  max-width: 95%;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 h1 {
@@ -104,7 +104,6 @@ button:hover {
     of it being at their position
   </p>
 
-  <!-- Sélecteur de cartes -->
   <select id="cardSelect">
     <option>A♠️</option><option>2♠️</option><option>3♠️</option><option>4♠️</option><option>5♠️</option><option>6♠️</option><option>7♠️</option><option>8♠️</option><option>9♠️</option><option>10♠️</option><option>J♠️</option><option>Q♠️</option><option>K♠️</option>
     <option>A♥️</option><option>2♥️</option><option>3♥️</option><option>4♥️</option><option>5♥️</option><option>6♥️</option><option>7♥️</option><option>8♥️</option><option>9♥️</option><option>10♥️</option><option>J♥️</option><option>Q♥️</option><option>K♥️</option>
@@ -112,7 +111,6 @@ button:hover {
     <option>A♦️</option><option>2♦️</option><option>3♦️</option><option>4♦️</option><option>5♦️</option><option>6♦️</option><option>7♦️</option><option>8♦️</option><option>9♦️</option><option>10♦️</option><option>J♦️</option><option>Q♦️</option><option>K♦️</option>
   </select>
 
-  <!-- Sélecteur de positions -->
   <select id="positionSelect">
     <option>1</option><option>2</option><option>3</option><option>4</option><option>5</option>
     <option>6</option><option>7</option><option>8</option><option>9</option><option>10</option>
@@ -128,7 +126,6 @@ button:hover {
   </select>
 
   <div id="statDisplay"></div>
-
   <button id="calculateBtn">🎲 Calculate</button>
 </div>
 
